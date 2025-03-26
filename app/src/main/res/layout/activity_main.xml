@@ -30,8 +30,6 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-
-
     <TextView
         android:id="@+id/saudacao"
         android:layout_width="wrap_content"

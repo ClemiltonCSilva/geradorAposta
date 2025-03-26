@@ -28,14 +28,14 @@ class MainActivity : AppCompatActivity() {
         val receiverNumberGerator: TextView = findViewById(R.id.receiverNumberGerator)
         val receiverNumber: EditText = findViewById(R.id.receiceNumber)
         val btnGenerator: Button = findViewById(R.id.btnGerator)
-            btnGenerator.setOnClickListener {
+        btnGenerator.setOnClickListener {
             geradorDeNumeros(receiverNumber.text.toString(), receiverNumberGerator)
-            }
-
-            prefers = getSharedPreferences("db", MODE_PRIVATE)
-            val numberOld = prefers.getString("number_old", null)
-            numberOld?.let { receiverNumberGerator.text = "Aposta Anterior: $it" }
         }
+
+        prefers = getSharedPreferences("db", MODE_PRIVATE)
+        val numberOld = prefers.getString("number_old", null)
+        numberOld?.let { receiverNumberGerator.text = "Aposta Anterior: $it" }
+    }
 
     private fun geradorDeNumeros(number: String, receiverNumberGerator: TextView) {
         if (number.isEmpty() || number.toInt() !in 6..15) {
