@@ -7,8 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
-
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,7 +36,7 @@
         android:id="@+id/saudacao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="100dp"
         android:text="@string/saudacao"
         android:textSize="34sp"
         android:textStyle="bold"
@@ -66,7 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="Gerador de Número"
-        android:textSize="24sp"
+        android:textSize="16sp"
         android:textAlignment="center"
         tools:layout_editor_absoluteX="188dp"
         tools:layout_editor_absoluteY="237dp"

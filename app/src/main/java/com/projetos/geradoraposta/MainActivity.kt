@@ -28,18 +28,14 @@ class MainActivity : AppCompatActivity() {
         val receiverNumberGerator: TextView = findViewById(R.id.receiverNumberGerator)
         val receiverNumber: EditText = findViewById(R.id.receiceNumber)
         val btnGenerator: Button = findViewById(R.id.btnGerator)
-        btnGenerator.setOnClickListener {
+            btnGenerator.setOnClickListener {
             geradorDeNumeros(receiverNumber.text.toString(), receiverNumberGerator)
-        }
-
-            // inicío do BD
-            prefers = getSharedPreferences("db", MODE_PRIVATE) // variavel criada recebe o nome do arquivo e o modo de acesso.
-            val numberOld = prefers.getString("number_old", null) // variavel criada para receber os dados do arquivo.
-            if (numberOld != null) {
-                receiverNumberGerator.text = "Aposta anterior: $numberOld"
             }
-        }
 
+            prefers = getSharedPreferences("db", MODE_PRIVATE)
+            val numberOld = prefers.getString("number_old", null)
+            numberOld?.let { receiverNumberGerator.text = "Aposta Anterior: $it" }
+        }
 
     private fun geradorDeNumeros(number: String, receiverNumberGerator: TextView) {
         if (number.isEmpty() || number.toInt() !in 6..15) {
@@ -49,18 +45,15 @@ class MainActivity : AppCompatActivity() {
 
         val numbersAleatory = mutableSetOf<Int>()
         val random = Random()
-
         while (numbersAleatory.size < number.toInt()) {
             numbersAleatory.add(random.nextInt(60) + 1)
         }
 
         receiverNumberGerator.text = numbersAleatory.sorted().joinToString(" - ")
 
-
-        // Gravar os dados no SharedPreferences
-        val editor = prefers.edit() // variavel criada para editar o arquivo.
-        editor.putString("number_old", receiverNumberGerator.text.toString()) // chave e valor.
-        editor.apply() // salva os dados. Persistir os dadoså
+        prefers.edit().apply {
+            putString("number_old", receiverNumberGerator.text.toString())
+            apply()
+        }
     }
-
 }
